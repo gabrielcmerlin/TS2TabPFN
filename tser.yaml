@@ -1,33 +1,37 @@
-filename: tsfresh_1.csv
+filename: raw_2.csv
 
 device: cuda
 
 runs: 5
 
 models: 
-  # - raw
+  - raw
   # - c22
-  - tsfresh
+  # - tsfresh
   # - mantis
+  # - fcn
+  # - minirocket_fm
 
 datasets: 
-  - Covid3Month
-  - BIDMC32SpO2
-  - BIDMC32HR
-  - BIDMC32RR
-  - AppliancesEnergy
-  - FloodModeling3
-  - FloodModeling1
-  - HouseholdPowerConsumption2
-  - LiveFuelMoistureContent
-  - HouseholdPowerConsumption1    
+  # - Covid3Month
+  # - BIDMC32SpO2
+  # - BIDMC32RR
+  # - AppliancesEnergy
+  # - FloodModeling3
+  # - FloodModeling1
+  # - HouseholdPowerConsumption2
+  # - LiveFuelMoistureContent
+  # - HouseholdPowerConsumption1
   # - FloodModeling2
+
+  # - BIDMC32HR
   # - IEEEPPG
   # - BenzeneConcentration
-  # - BeijingPM10Quality
   # - BeijingPM25Quality
-  # - NewsHeadlineSentiment
-  # - NewsTitleSentiment
-  # - PPGDalia
+  
+  - BeijingPM10Quality
+  - NewsHeadlineSentiment
+  - NewsTitleSentiment
+  - PPGDalia
 
   # - AustraliaRainfall
