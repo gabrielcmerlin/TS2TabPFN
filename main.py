@@ -87,6 +87,7 @@ def main():
     MODELS = config.get("models", [])
     FILENAME = config.get("filename", 'teste')
     SEED = config.get("seed", 42)
+    DEVICE =  config.get("device", 'cpu')
 
     csv_path = os.path.join("./outputs", FILENAME)
 
@@ -151,7 +152,8 @@ def main():
                     start_time = time.time()
                     regressor = TabPFNRegressor(
                         random_state=SEED+run,
-                        ignore_pretraining_limits=True
+                        ignore_pretraining_limits=True,
+                        device=DEVICE
                     )
                     regressor.fit(X_train, y_train)
                     y_pred = regressor.predict(X_test)
