@@ -47,10 +47,10 @@ datasets:
   # - CopperConcentration
   # - Covid19Andalusia
   # - DailyOilGasPrices
-  # - DailyTemperatureLatitude
+  - DailyTemperatureLatitude
   # - DhakaHourlyAirQuality
   # - ElectricityPredictor
-  # - ElectricMotorTemperature
+  - ElectricMotorTemperature
   # - EthereumSentiment
   # - GasSensorArrayAcetone
   # - GasSensorArrayEthanol
