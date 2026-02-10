@@ -1,15 +1,13 @@
-filename: raw_2.csv
+filename: c22_1.csv
 
 device: cuda
 
 runs: 5
 
 models: 
-  - raw
-  # - c22
+  - c22
   # - tsfresh
   # - mantis
-  # - fcn
   # - minirocket_fm
 
 datasets: 
@@ -23,15 +21,64 @@ datasets:
   # - LiveFuelMoistureContent
   # - HouseholdPowerConsumption1
   # - FloodModeling2
-
   # - BIDMC32HR
   # - IEEEPPG
   # - BenzeneConcentration
+  # - BeijingPM10Quality
+  # - NewsHeadlineSentiment
+  # - NewsTitleSentiment
+  # - PPGDalia
   # - BeijingPM25Quality
-  
-  - BeijingPM10Quality
-  - NewsHeadlineSentiment
-  - NewsTitleSentiment
-  - PPGDalia
 
-  # - AustraliaRainfall
+  - AustraliaRainfall
+
+  # ----------------------------------------------------------------------------
+
+  # - AcousticContaminationMadrid
+  # - AluminiumConcentration
+  # - BarCrawl6min
+  # - BeijingIntAirportPM25Quality
+
+  # - BinanceCoinSentiment
+  # - BitcoinSentiment
+  # - BoronConcentration
+  # - CalciumConcentration
+  # - CardanoSentiment
+  # - ChilledWaterPredictor
+  # - CopperConcentration
+  # - Covid19Andalusia
+  # - DailyOilGasPrices
+  # - DailyTemperatureLatitude
+
+  # - DhakaHourlyAirQuality
+  # - ElectricityPredictor
+  # - ElectricMotorTemperature
+  # - EthereumSentiment
+  # - GasSensorArrayAcetone
+  # - GasSensorArrayEthanol
+  # - HotwaterPredictor
+  # - IronConcentration
+  # - LPGasMonitoringHomeActivity
+  # - MadridPM10Quality
+
+  # - MagnesiumConcentration
+  # - ManganeseConcentration
+  # - MethaneMonitoringHomeActivity
+  # - MetroInterstateTrafficVolume
+  # - NaturalGasPricesSentiment
+  # - OccupancyDetectionLight
+  # - ParkingBirmingham
+  # - PhosphorusConcentration
+  # - PotassiumConcentration
+  # - PrecipitationAndalusia
+
+  # - SierraNevadaMountainsSnow
+  # - SodiumConcentration
+  # - SolarRadiationAndalusia
+  # - SteamPredictor
+  # - SulphurConcentration
+  # - TetuanEnergyConsumption
+  - VentilatorPressure
+  # - WaveDataTension
+  # - WindTurbinePower
+  # - ZincConcentration
