@@ -1,4 +1,4 @@
-filename: tsfresh_1.csv
+filename: tsfresh_3.csv
 
 device: cuda
 
@@ -13,24 +13,24 @@ models:
 datasets: 
   # - AustraliaRainfall
 
-  - Covid3Month
-  - BIDMC32SpO2
-  - BIDMC32RR
-  - AppliancesEnergy
-  - FloodModeling3
-  - FloodModeling1
-  - HouseholdPowerConsumption2
-  - LiveFuelMoistureContent
-  - HouseholdPowerConsumption1
-  - FloodModeling2
-  - BIDMC32HR
-  - IEEEPPG
-  - BenzeneConcentration
-  - BeijingPM10Quality
-  - NewsHeadlineSentiment
-  - NewsTitleSentiment
-  - PPGDalia
-  - BeijingPM25Quality
+  # - Covid3Month
+  # - BIDMC32SpO2
+  # - BIDMC32RR
+  # - AppliancesEnergy
+  # - FloodModeling3
+  # - FloodModeling1
+  # - HouseholdPowerConsumption2
+  # - LiveFuelMoistureContent
+  # - HouseholdPowerConsumption1
+  # - FloodModeling2
+  # - BIDMC32HR
+  # - IEEEPPG
+  # - BenzeneConcentration
+  # - BeijingPM10Quality
+  # - NewsHeadlineSentiment
+  # - NewsTitleSentiment
+  # - PPGDalia
+  # - BeijingPM25Quality
 
   # ----------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ datasets:
   # - SteamPredictor
   # - SulphurConcentration
   # - TetuanEnergyConsumption
-  # - VentilatorPressure
+  - VentilatorPressure
   # - WaveDataTension
   # - WindTurbinePower
   # - ZincConcentration
