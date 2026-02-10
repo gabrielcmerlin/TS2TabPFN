@@ -1,4 +1,4 @@
-filename: mantis_1.csv
+filename: tsfresh_1.csv
 
 device: cuda
 
@@ -6,8 +6,8 @@ runs: 5
 
 models: 
   # - c22
-  - mantis
-  # - tsfresh
+  # - mantis
+  - tsfresh
   # - minirocket_fm
 
 datasets: 
@@ -31,7 +31,6 @@ datasets:
   - NewsTitleSentiment
   - PPGDalia
   - BeijingPM25Quality
-
 
   # ----------------------------------------------------------------------------
 
