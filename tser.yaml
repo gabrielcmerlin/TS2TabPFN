@@ -1,36 +1,37 @@
-filename: c22_1.csv
+filename: mantis_1.csv
 
 device: cuda
 
 runs: 5
 
 models: 
-  - c22
+  # - c22
+  - mantis
   # - tsfresh
-  # - mantis
   # - minirocket_fm
 
 datasets: 
-  # - Covid3Month
-  # - BIDMC32SpO2
-  # - BIDMC32RR
-  # - AppliancesEnergy
-  # - FloodModeling3
-  # - FloodModeling1
-  # - HouseholdPowerConsumption2
-  # - LiveFuelMoistureContent
-  # - HouseholdPowerConsumption1
-  # - FloodModeling2
-  # - BIDMC32HR
-  # - IEEEPPG
-  # - BenzeneConcentration
-  # - BeijingPM10Quality
-  # - NewsHeadlineSentiment
-  # - NewsTitleSentiment
-  # - PPGDalia
-  # - BeijingPM25Quality
+  # - AustraliaRainfall
 
-  - AustraliaRainfall
+  - Covid3Month
+  - BIDMC32SpO2
+  - BIDMC32RR
+  - AppliancesEnergy
+  - FloodModeling3
+  - FloodModeling1
+  - HouseholdPowerConsumption2
+  - LiveFuelMoistureContent
+  - HouseholdPowerConsumption1
+  - FloodModeling2
+  - BIDMC32HR
+  - IEEEPPG
+  - BenzeneConcentration
+  - BeijingPM10Quality
+  - NewsHeadlineSentiment
+  - NewsTitleSentiment
+  - PPGDalia
+  - BeijingPM25Quality
+
 
   # ----------------------------------------------------------------------------
 
@@ -38,7 +39,6 @@ datasets:
   # - AluminiumConcentration
   # - BarCrawl6min
   # - BeijingIntAirportPM25Quality
-
   # - BinanceCoinSentiment
   # - BitcoinSentiment
   # - BoronConcentration
@@ -49,7 +49,6 @@ datasets:
   # - Covid19Andalusia
   # - DailyOilGasPrices
   # - DailyTemperatureLatitude
-
   # - DhakaHourlyAirQuality
   # - ElectricityPredictor
   # - ElectricMotorTemperature
@@ -71,14 +70,13 @@ datasets:
   # - PhosphorusConcentration
   # - PotassiumConcentration
   # - PrecipitationAndalusia
-
   # - SierraNevadaMountainsSnow
   # - SodiumConcentration
   # - SolarRadiationAndalusia
   # - SteamPredictor
   # - SulphurConcentration
   # - TetuanEnergyConsumption
-  - VentilatorPressure
+  # - VentilatorPressure
   # - WaveDataTension
   # - WindTurbinePower
   # - ZincConcentration
