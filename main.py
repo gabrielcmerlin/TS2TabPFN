@@ -6,6 +6,7 @@ import numpy as np
 from Parser import Parser
 from aeon.datasets import load_regression
 from aeon.transformations.collection.feature_based import Catch22
+from aeon.transformations.collection.convolution_based import MiniRocket
 from tabpfn import TabPFNRegressor
 from mantis.architecture import Mantis8M
 from mantis.trainer import MantisTrainer
@@ -167,6 +168,16 @@ def main():
                     X_train = mantis.transform(X_train)
                     X_test = mantis.transform(X_test)
 
+                elif model == 'minirocket_fm':
+                    minirocket = MiniRocket()
+                    minirocket.fit(X_train)
+
+                    X_train_feat = minirocket.transform(X_train)
+                    X_test_feat = minirocket.transform(X_test)
+
+                    X_train = np.asarray(X_train_feat)
+                    X_test = np.asarray(X_test_feat)
+
                 try:
                     start_time = time.time()
                     regressor = TabPFNRegressor(
@@ -211,6 +222,8 @@ def main():
                 except Exception as e:
                     print(f"[ERROR] Model {model} on dataset {dataset_name} failed:")
                     print(type(e).__name__, e)
+    
+    print('DONE!')
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-filename: tsfresh_3.csv
+filename: mr_4.csv
 
 device: cuda
 
@@ -7,8 +7,8 @@ runs: 5
 models: 
   # - c22
   # - mantis
-  - tsfresh
-  # - minirocket_fm
+  # - tsfresh
+  - minirocket_fm
 
 datasets: 
   # - AustraliaRainfall
@@ -47,10 +47,10 @@ datasets:
   # - CopperConcentration
   # - Covid19Andalusia
   # - DailyOilGasPrices
-  - DailyTemperatureLatitude
+  # - DailyTemperatureLatitude
   # - DhakaHourlyAirQuality
   # - ElectricityPredictor
-  - ElectricMotorTemperature
+  # - ElectricMotorTemperature
   # - EthereumSentiment
   # - GasSensorArrayAcetone
   # - GasSensorArrayEthanol
@@ -75,7 +75,7 @@ datasets:
   # - SteamPredictor
   # - SulphurConcentration
   # - TetuanEnergyConsumption
-  - VentilatorPressure
   # - WaveDataTension
   # - WindTurbinePower
   # - ZincConcentration
+  # - VentilatorPressure
