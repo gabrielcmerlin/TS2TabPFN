@@ -1,4 +1,4 @@
-filename: mr_4.csv
+filename: mr_2.csv
 
 device: cuda
 
@@ -13,6 +13,15 @@ models:
 datasets: 
   # - AustraliaRainfall
 
+  - DailyTemperatureLatitude
+  - ElectricMotorTemperature
+  - VentilatorPressure
+  - BeijingPM10Quality
+  - NewsHeadlineSentiment
+  - NewsTitleSentiment
+  - PPGDalia
+  - BeijingPM25Quality
+  
   # - Covid3Month
   # - BIDMC32SpO2
   # - BIDMC32RR
@@ -26,11 +35,6 @@ datasets:
   # - BIDMC32HR
   # - IEEEPPG
   # - BenzeneConcentration
-  # - BeijingPM10Quality
-  # - NewsHeadlineSentiment
-  # - NewsTitleSentiment
-  # - PPGDalia
-  # - BeijingPM25Quality
 
   # ----------------------------------------------------------------------------
 
@@ -47,10 +51,8 @@ datasets:
   # - CopperConcentration
   # - Covid19Andalusia
   # - DailyOilGasPrices
-  # - DailyTemperatureLatitude
   # - DhakaHourlyAirQuality
   # - ElectricityPredictor
-  # - ElectricMotorTemperature
   # - EthereumSentiment
   # - GasSensorArrayAcetone
   # - GasSensorArrayEthanol
@@ -78,4 +80,3 @@ datasets:
   # - WaveDataTension
   # - WindTurbinePower
   # - ZincConcentration
-  # - VentilatorPressure
