@@ -1,4 +1,4 @@
-filename: mr_2.csv
+filename: restante.csv
 
 device: cuda
 
@@ -7,21 +7,21 @@ runs: 5
 models: 
   # - c22
   # - mantis
-  # - tsfresh
+  - tsfresh
   - minirocket_fm
 
 datasets: 
   # - AustraliaRainfall
 
   - DailyTemperatureLatitude
-  - ElectricMotorTemperature
   - VentilatorPressure
-  - BeijingPM10Quality
   - NewsHeadlineSentiment
   - NewsTitleSentiment
   - PPGDalia
-  - BeijingPM25Quality
   
+  # - ElectricMotorTemperature
+  # - BeijingPM10Quality
+  # - BeijingPM25Quality
   # - Covid3Month
   # - BIDMC32SpO2
   # - BIDMC32RR
