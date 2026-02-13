@@ -1,4 +1,4 @@
-filename: restante.csv
+filename: drcif_1.csv
 
 device: cuda
 
@@ -7,34 +7,34 @@ runs: 5
 models: 
   # - c22
   # - mantis
-  - tsfresh
-  - minirocket_fm
+  # - tsfresh
+  # - minirocket_fm
+  - DrCIF
 
 datasets: 
   # - AustraliaRainfall
 
-  - DailyTemperatureLatitude
-  - VentilatorPressure
-  - NewsHeadlineSentiment
-  - NewsTitleSentiment
-  - PPGDalia
-  
-  # - ElectricMotorTemperature
-  # - BeijingPM10Quality
-  # - BeijingPM25Quality
-  # - Covid3Month
-  # - BIDMC32SpO2
+  # - FloodModeling2
   # - BIDMC32RR
+  # - PPGDalia
+  # - BeijingPM10Quality
+  # - BenzeneConcentration
+
+  # - NewsHeadlineSentiment
+  # - HouseholdPowerConsumption1
+  # - LiveFuelMoistureContent
+  # - IEEEPPG
+  
+  # - Covid3Month
+  # - BeijingPM25Quality
+  # - NewsTitleSentiment
+  # - BIDMC32SpO2
+
   # - AppliancesEnergy
   # - FloodModeling3
   # - FloodModeling1
   # - HouseholdPowerConsumption2
-  # - LiveFuelMoistureContent
-  # - HouseholdPowerConsumption1
-  # - FloodModeling2
   # - BIDMC32HR
-  # - IEEEPPG
-  # - BenzeneConcentration
 
   # ----------------------------------------------------------------------------
 
@@ -80,3 +80,6 @@ datasets:
   # - WaveDataTension
   # - WindTurbinePower
   # - ZincConcentration
+  # - DailyTemperatureLatitude
+  # - VentilatorPressure
+  # - ElectricMotorTemperature

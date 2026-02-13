@@ -22,6 +22,7 @@ from sklearn.metrics import (
 import os
 import time
 from datetime import datetime
+from aeon.regression.interval_based import DrCIFRegressor
 
 def to_tsfresh_df(X):
     if X.ndim == 2:
@@ -61,20 +62,6 @@ def get_data(dataset_name, model_name):
     X_test = (X_test - X_test.mean(axis=2, keepdims=True)) / (
         X_test.std(axis=2, keepdims=True) + 1e-8
     )
-
-    if model_name == 'raw':
-        # Caso: (N, C, T)
-        if X_train.ndim == 3:
-            N, C, T = X_train.shape
-
-            if C == 1:
-                # Remove canal singleton -> (N, T)
-                X_train = X_train[:, 0, :]
-                X_test  = X_test[:, 0, :]
-            else:
-                # Concatena canais -> (N, C*T)
-                X_train = X_train.reshape(N, C * T)
-                X_test  = X_test.reshape(X_test.shape[0], C * T)
 
     return X_train, y_train, X_test, y_test
 
@@ -179,15 +166,33 @@ def main():
                     X_test = np.asarray(X_test_feat)
 
                 try:
-                    start_time = time.time()
-                    regressor = TabPFNRegressor(
-                        random_state=SEED+run,
-                        ignore_pretraining_limits=True,
-                        device=DEVICE
-                    )
-                    regressor.fit(X_train, y_train)
-                    y_pred = regressor.predict(X_test)
-                    elapsed_time = time.time() - start_time
+
+                    if model == 'DrCIF':
+                        d = X_train.shape[1]       # número de dimensões
+                        rm = X_train.shape[2]      # comprimento da série
+                        n_intervals = int(4 + (np.sqrt(d * rm) / 3))
+                        start_time = time.time()
+                        regressor = DrCIFRegressor(
+                            n_estimators=500,
+                            n_intervals=n_intervals,      # intervalos por representação
+                            att_subsample_size=10,        # features por árvore
+                            random_state=42,
+                            n_jobs=-1                     # usa todos os núcleos
+                        )
+                        regressor.fit(X_train, y_train)
+                        y_pred = regressor.predict(X_test)
+                        elapsed_time = time.time() - start_time
+
+                    else:
+                        start_time = time.time()
+                        regressor = TabPFNRegressor(
+                            random_state=SEED+run,
+                            ignore_pretraining_limits=True,
+                            device=DEVICE
+                        )
+                        regressor.fit(X_train, y_train)
+                        y_pred = regressor.predict(X_test)
+                        elapsed_time = time.time() - start_time
 
                     mse = mean_squared_error(y_test, y_pred)
                     mae = mean_absolute_error(y_test, y_pred)
