@@ -1,4 +1,4 @@
-filename: drcif_1.csv
+filename: hit_1.csv
 
 device: cuda
 
@@ -9,27 +9,25 @@ models:
   # - mantis
   # - tsfresh
   # - minirocket_fm
-  - DrCIF
+  # - DrCIF
 
 datasets: 
   # - AustraliaRainfall
 
-  # - FloodModeling2
-  # - BIDMC32RR
-  # - PPGDalia
-  # - BeijingPM10Quality
-  # - BenzeneConcentration
-
-  # - NewsHeadlineSentiment
-  # - HouseholdPowerConsumption1
-  # - LiveFuelMoistureContent
-  # - IEEEPPG
+  - FloodModeling2
+  - BIDMC32RR
+  - PPGDalia
+  - BeijingPM10Quality
+  - BenzeneConcentration
+  - NewsHeadlineSentiment
+  - HouseholdPowerConsumption1
+  - LiveFuelMoistureContent
+  - IEEEPPG
   
   # - Covid3Month
   # - BeijingPM25Quality
   # - NewsTitleSentiment
   # - BIDMC32SpO2
-
   # - AppliancesEnergy
   # - FloodModeling3
   # - FloodModeling1
