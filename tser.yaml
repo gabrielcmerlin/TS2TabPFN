@@ -1,42 +1,46 @@
-filename: hit_1.csv
+filename: c22.csv
 
 device: cuda
 
-runs: 5
+runs: 30
 
 models: 
-  # - c22
+  - c22
   # - mantis
   # - tsfresh
   # - minirocket_fm
   # - DrCIF
 
-datasets: 
+data_path: data
+
+seed: 0
+
+datasets:
+
   # - AustraliaRainfall
 
+  - Covid3Month
+  - FloodModeling1
   - FloodModeling2
-  - BIDMC32RR
-  - PPGDalia
-  - BeijingPM10Quality
-  - BenzeneConcentration
-  - NewsHeadlineSentiment
-  - HouseholdPowerConsumption1
-  - LiveFuelMoistureContent
+  - FloodModeling3
   - IEEEPPG
-  
-  # - Covid3Month
-  # - BeijingPM25Quality
-  # - NewsTitleSentiment
-  # - BIDMC32SpO2
-  # - AppliancesEnergy
-  # - FloodModeling3
-  # - FloodModeling1
-  # - HouseholdPowerConsumption2
-  # - BIDMC32HR
+  - PPGDalia_eq
+  - BeijingPM10Quality_nmv
+  - BeijingPM25Quality_nmv
+  - HouseholdPowerConsumption2_nmv
+  - HouseholdPowerConsumption1_nmv
+  - AppliancesEnergy
+  - BenzeneConcentration_nmv
+  - LiveFuelMoistureContent
+  - NewsHeadlineSentiment
+  - NewsTitleSentiment
+  - BIDMC32RR
+  - BIDMC32SpO2
+  - BIDMC32HR
 
   # ----------------------------------------------------------------------------
 
-  # - AcousticContaminationMadrid
+  # - AcousticContaminationMadrid_nmv
   # - AluminiumConcentration
   # - BarCrawl6min
   # - BeijingIntAirportPM25Quality
@@ -57,7 +61,7 @@ datasets:
   # - HotwaterPredictor
   # - IronConcentration
   # - LPGasMonitoringHomeActivity
-  # - MadridPM10Quality
+  # - MadridPM10Quality_nmv
 
   # - MagnesiumConcentration
   # - ManganeseConcentration
@@ -65,13 +69,13 @@ datasets:
   # - MetroInterstateTrafficVolume
   # - NaturalGasPricesSentiment
   # - OccupancyDetectionLight
-  # - ParkingBirmingham
+  # - ParkingBirmingham_eq
   # - PhosphorusConcentration
   # - PotassiumConcentration
-  # - PrecipitationAndalusia
+  # - PrecipitationAndalusia_nmv
   # - SierraNevadaMountainsSnow
   # - SodiumConcentration
-  # - SolarRadiationAndalusia
+  # - SolarRadiationAndalusia_nmv
   # - SteamPredictor
   # - SulphurConcentration
   # - TetuanEnergyConsumption

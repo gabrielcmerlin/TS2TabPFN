@@ -23,47 +23,7 @@ import os
 import time
 from datetime import datetime
 from aeon.regression.interval_based import DrCIFRegressor
-
-def to_tsfresh_df(X):
-    if X.ndim == 2:
-        X = X[:, None, :]
-    N, C, T = X.shape
-    dfs = []
-    for i in range(N):
-        for c in range(C):
-            dfs.append(
-                pd.DataFrame({
-                    "id": i,
-                    "time": np.arange(T),
-                    "value": X[i, c],
-                    "kind": f"ch{c}"
-                })
-            )
-    return pd.concat(dfs, ignore_index=True)
-
-def adjust_ts_length(X, num_patches):
-    T = X.shape[-1]
-    T_new = (T // num_patches) * num_patches
-    return X[..., :T_new]
-
-def get_data(dataset_name, model_name):
-    # Download data.
-    X_train, y_train = load_regression(dataset_name, split="train")
-    X_test, y_test = load_regression(dataset_name, split="test")
-
-    # Get rid of NaNs.
-    X_train = np.nan_to_num(X_train, nan=0.0)
-    X_test = np.nan_to_num(X_test, nan=0.0)
-
-    # Normalize per time series.
-    X_train = (X_train - X_train.mean(axis=2, keepdims=True)) / (
-        X_train.std(axis=2, keepdims=True) + 1e-8
-    )
-    X_test = (X_test - X_test.mean(axis=2, keepdims=True)) / (
-        X_test.std(axis=2, keepdims=True) + 1e-8
-    )
-
-    return X_train, y_train, X_test, y_test
+from utils import get_data, resample_data, load_experiment_data, adjust_ts_length, to_tsfresh_df
 
 def main():
     # Load config.yaml.
@@ -75,8 +35,9 @@ def main():
     DATASETS = config.get("datasets", [])
     MODELS = config.get("models", [])
     FILENAME = config.get("filename", 'teste')
-    SEED = config.get("seed", 42)
+    SEED = config.get("seed", 0)
     DEVICE =  config.get("device", 'cpu')
+    DATA_PATH = config.get("data_path", 'data/')
 
     csv_path = os.path.join("./outputs", FILENAME)
 
@@ -89,7 +50,7 @@ def main():
             for model in MODELS:
                 print(f'\n        -> Running model {model}  ')
 
-                X_train, y_train, X_test, y_test = get_data(dataset_name, model)
+                X_train, y_train, X_test, y_test = get_data(DATA_PATH, dataset_name, SEED+run)
 
                 if model == 'c22':
                     catch22 = Catch22()
@@ -166,33 +127,15 @@ def main():
                     X_test = np.asarray(X_test_feat)
 
                 try:
-
-                    if model == 'DrCIF':
-                        d = X_train.shape[1]       # número de dimensões
-                        rm = X_train.shape[2]      # comprimento da série
-                        n_intervals = int(4 + (np.sqrt(d * rm) / 3))
-                        start_time = time.time()
-                        regressor = DrCIFRegressor(
-                            n_estimators=500,
-                            n_intervals=n_intervals,      # intervalos por representação
-                            att_subsample_size=10,        # features por árvore
-                            random_state=42,
-                            n_jobs=-1                     # usa todos os núcleos
-                        )
-                        regressor.fit(X_train, y_train)
-                        y_pred = regressor.predict(X_test)
-                        elapsed_time = time.time() - start_time
-
-                    else:
-                        start_time = time.time()
-                        regressor = TabPFNRegressor(
-                            random_state=SEED+run,
-                            ignore_pretraining_limits=True,
-                            device=DEVICE
-                        )
-                        regressor.fit(X_train, y_train)
-                        y_pred = regressor.predict(X_test)
-                        elapsed_time = time.time() - start_time
+                    start_time = time.time()
+                    regressor = TabPFNRegressor(
+                        random_state=SEED+run,
+                        ignore_pretraining_limits=True,
+                        device=DEVICE
+                    )
+                    regressor.fit(X_train, y_train)
+                    y_pred = regressor.predict(X_test)
+                    elapsed_time = time.time() - start_time
 
                     mse = mean_squared_error(y_test, y_pred)
                     mae = mean_absolute_error(y_test, y_pred)
@@ -228,7 +171,7 @@ def main():
                     print(f"[ERROR] Model {model} on dataset {dataset_name} failed:")
                     print(type(e).__name__, e)
     
-    print('DONE!')
+    print('\nDONE!')
 
 if __name__ == "__main__":
     main()
