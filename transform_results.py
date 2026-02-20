@@ -3,7 +3,7 @@ import re
 
 # ========= CONFIG =========
 input_csv = "outputs/c22.csv"
-output_csv = "outputs/c22_folds.csv"
+output_csv = "results/C22_rmse.csv"
 metric = "rmse"
 # ==========================
 
@@ -14,7 +14,7 @@ df = pd.read_csv(input_csv)
 df["fold"] = df["run"].apply(lambda x: int(re.search(r"run(\d+)", x).group(1)) - 1)
 
 # Pivotar para formato wide
-pivot = df.pivot(index="dataset", columns="fold", values=metric)
+pivot = df.pivot(index="folds:", columns="fold", values=metric)
 
 # Ordenar colunas (folds)
 pivot = pivot.sort_index(axis=1)
