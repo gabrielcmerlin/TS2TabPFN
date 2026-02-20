@@ -1,4 +1,4 @@
-filename: c22.csv
+filename: c22_1.csv
 
 device: cuda
 
@@ -19,24 +19,21 @@ datasets:
 
   # - AustraliaRainfall
 
-  - Covid3Month
-  - FloodModeling1
-  - FloodModeling2
-  - FloodModeling3
-  - IEEEPPG
-  - PPGDalia_eq
-  - BeijingPM10Quality_nmv
-  - BeijingPM25Quality_nmv
-  - HouseholdPowerConsumption2_nmv
-  - HouseholdPowerConsumption1_nmv
-  - AppliancesEnergy
-  - BenzeneConcentration_nmv
-  - LiveFuelMoistureContent
-  - NewsHeadlineSentiment
-  - NewsTitleSentiment
-  - BIDMC32RR
-  - BIDMC32SpO2
-  - BIDMC32HR
+  # - Covid3Month
+  # - FloodModeling1
+  # - FloodModeling2
+  # - FloodModeling3
+  # - IEEEPPG
+  # - BeijingPM10Quality_nmv
+  # - BeijingPM25Quality_nmv
+  # - HouseholdPowerConsumption2_nmv
+  # - HouseholdPowerConsumption1_nmv
+  # - AppliancesEnergy
+  # - BenzeneConcentration_nmv
+  # - LiveFuelMoistureContent
+  # - BIDMC32RR
+  # - BIDMC32SpO2
+  # - BIDMC32HR
 
   # ----------------------------------------------------------------------------
 
@@ -83,5 +80,9 @@ datasets:
   # - WindTurbinePower
   # - ZincConcentration
   # - DailyTemperatureLatitude
-  # - VentilatorPressure
   # - ElectricMotorTemperature
+
+  # - PPGDalia_eq
+  # - NewsHeadlineSentiment
+  # - NewsTitleSentiment
+  # - VentilatorPressure
