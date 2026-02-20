@@ -58,51 +58,36 @@ def main():
                     X_test = catch22.transform(X_test)
 
                 elif model == 'tsfresh':
-                    base_path = f'./tsfresh_data/{dataset_name}'
-                    os.makedirs(base_path, exist_ok=True)
+                    df_train = to_tsfresh_df(X_train)
+                    df_test  = to_tsfresh_df(X_test)
+                    fc_params = EfficientFCParameters()
+                    n_jobs = max(1, os.cpu_count() // 2)
 
-                    train_path = os.path.join(base_path, 'X_train.csv')
-                    test_path  = os.path.join(base_path, 'X_test.csv')
+                    print('Extraindo features treino...')
+                    X_train = extract_features(
+                        df_train,
+                        column_id="id",
+                        column_sort="time",
+                        column_kind="kind",
+                        column_value="value",
+                        default_fc_parameters=fc_params,
+                        n_jobs=n_jobs
+                    )
+                    print('Extraindo features teste...')
+                    X_test = extract_features(
+                        df_test,
+                        column_id="id",
+                        column_sort="time",
+                        column_kind="kind",
+                        column_value="value",
+                        default_fc_parameters=fc_params,
+                        n_jobs=n_jobs
+                    )
 
-                    if os.path.exists(train_path) and os.path.exists(test_path):
-                        X_train = pd.read_csv(train_path, index_col=0).to_numpy()
-                        X_test  = pd.read_csv(test_path, index_col=0).to_numpy()
-                    else:
-                        df_train = to_tsfresh_df(X_train)
-                        df_test  = to_tsfresh_df(X_test)
-                        fc_params = EfficientFCParameters()
-
-                        n_jobs = max(1, os.cpu_count() // 2)
-
-                        print('Extraindo features treino...')
-                        X_train = extract_features(
-                            df_train,
-                            column_id="id",
-                            column_sort="time",
-                            column_kind="kind",
-                            column_value="value",
-                            default_fc_parameters=fc_params,
-                            n_jobs=n_jobs
-                        )
-                        print('Extraindo features treino...')
-                        X_test = extract_features(
-                            df_test,
-                            column_id="id",
-                            column_sort="time",
-                            column_kind="kind",
-                            column_value="value",
-                            default_fc_parameters=fc_params,
-                            n_jobs=n_jobs
-                        )
-
-                        impute(X_train)
-                        impute(X_test)
-
-                        X_train.to_csv(train_path)
-                        X_test.to_csv(test_path)
-
-                        X_train = X_train.to_numpy()
-                        X_test  = X_test.to_numpy()
+                    impute(X_train)
+                    impute(X_test)
+                    X_train = X_train.to_numpy()
+                    X_test  = X_test.to_numpy()
 
                 elif model == 'mantis':
                     network = Mantis8M(device='cuda')

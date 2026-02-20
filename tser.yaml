@@ -2,7 +2,7 @@ filename: c22_1.csv
 
 device: cuda
 
-runs: 30
+runs: 2
 
 models: 
   - c22
@@ -19,7 +19,7 @@ datasets:
 
   # - AustraliaRainfall
 
-  # - Covid3Month
+  - Covid3Month
   # - FloodModeling1
   # - FloodModeling2
   # - FloodModeling3
