@@ -1,0 +1,8 @@
+mini -> adilson
+
+tsfresh -> mojito
+tsfresh faltam os mais pesados:
+    - ElectricMotorTemperature
+    - DailyTemperatureLatitude
+    - BeijingPM10Quality_nmv
+    - BeijingPM25Quality_nmv

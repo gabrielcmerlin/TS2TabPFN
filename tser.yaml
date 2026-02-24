@@ -1,15 +1,15 @@
-filename: c22_1.csv
+filename: mr_2.csv
 
 device: cuda
 
-runs: 2
+runs: 1
 
 models: 
-  - c22
-  # - mantis
+  # - c22
   # - tsfresh
-  # - minirocket_fm
+  - multirocket_fm
   # - DrCIF
+  # - MiniRocket
 
 data_path: data
 
@@ -17,15 +17,11 @@ seed: 0
 
 datasets:
 
-  # - AustraliaRainfall
-
-  - Covid3Month
+  # - Covid3Month
   # - FloodModeling1
   # - FloodModeling2
   # - FloodModeling3
   # - IEEEPPG
-  # - BeijingPM10Quality_nmv
-  # - BeijingPM25Quality_nmv
   # - HouseholdPowerConsumption2_nmv
   # - HouseholdPowerConsumption1_nmv
   # - AppliancesEnergy
@@ -34,8 +30,6 @@ datasets:
   # - BIDMC32RR
   # - BIDMC32SpO2
   # - BIDMC32HR
-
-  # ----------------------------------------------------------------------------
 
   # - AcousticContaminationMadrid_nmv
   # - AluminiumConcentration
@@ -75,14 +69,23 @@ datasets:
   # - SolarRadiationAndalusia_nmv
   # - SteamPredictor
   # - SulphurConcentration
-  # - TetuanEnergyConsumption
   # - WaveDataTension
   # - WindTurbinePower
   # - ZincConcentration
-  # - DailyTemperatureLatitude
-  # - ElectricMotorTemperature
 
+  # - ElectricMotorTemperature
+  # - BeijingPM10Quality_nmv
+  # - BeijingPM25Quality_nmv
+
+
+
+
+
+
+  # - DailyTemperatureLatitude
+  # - TetuanEnergyConsumption
   # - PPGDalia_eq
   # - NewsHeadlineSentiment
   # - NewsTitleSentiment
   # - VentilatorPressure
+  # - AustraliaRainfall

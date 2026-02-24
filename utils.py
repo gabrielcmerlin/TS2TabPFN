@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from aeon.datasets import load_from_ts_file, write_to_ts_file
 from sklearn.utils import check_random_state
 

@@ -6,7 +6,8 @@ import numpy as np
 from Parser import Parser
 from aeon.datasets import load_regression
 from aeon.transformations.collection.feature_based import Catch22
-from aeon.transformations.collection.convolution_based import MiniRocket
+from aeon.transformations.collection.convolution_based import MultiRocket
+from aeon.regression.convolution_based import MiniRocketRegressor
 from tabpfn import TabPFNRegressor
 from mantis.architecture import Mantis8M
 from mantis.trainer import MantisTrainer
@@ -89,37 +90,35 @@ def main():
                     X_train = X_train.to_numpy()
                     X_test  = X_test.to_numpy()
 
-                elif model == 'mantis':
-                    network = Mantis8M(device='cuda')
-                    network = network.from_pretrained("paris-noah/Mantis-8M")
-                    mantis = MantisTrainer(device='cuda', network=network)
-                    num_patches = network.tokgen_unit.num_patches
+                elif model == 'multirocket_fm':
+                    multirocket = MultiRocket()
+                    multirocket.fit(X_train)
 
-                    X_train = adjust_ts_length(X_train, num_patches)
-                    X_test  = adjust_ts_length(X_test, num_patches)
-
-                    X_train = mantis.transform(X_train)
-                    X_test = mantis.transform(X_test)
-
-                elif model == 'minirocket_fm':
-                    minirocket = MiniRocket()
-                    minirocket.fit(X_train)
-
-                    X_train_feat = minirocket.transform(X_train)
-                    X_test_feat = minirocket.transform(X_test)
+                    X_train_feat = multirocket.transform(X_train)
+                    X_test_feat = multirocket.transform(X_test)
 
                     X_train = np.asarray(X_train_feat)
                     X_test = np.asarray(X_test_feat)
 
                 try:
+
                     start_time = time.time()
-                    regressor = TabPFNRegressor(
-                        random_state=SEED+run,
-                        ignore_pretraining_limits=True,
-                        device=DEVICE
-                    )
-                    regressor.fit(X_train, y_train)
-                    y_pred = regressor.predict(X_test)
+
+                    if model == 'MiniRocket':
+                        regressor = MiniRocketRegressor(
+                            random_state=SEED+run,
+                        )
+                        regressor.fit(X_train, y_train)
+                        y_pred = regressor.predict(X_test)
+                    else:    
+                        regressor = TabPFNRegressor(
+                            random_state=SEED+run,
+                            ignore_pretraining_limits=True,
+                            device=DEVICE
+                        )
+                        regressor.fit(X_train, y_train)
+                        y_pred = regressor.predict(X_test)
+
                     elapsed_time = time.time() - start_time
 
                     mse = mean_squared_error(y_test, y_pred)
