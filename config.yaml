@@ -1,13 +1,13 @@
-filename: mr_2.csv
+filename: tsfresh_eff.csv
 
 device: cuda
 
-runs: 1
+runs: 30
 
 models: 
   # - c22
-  # - tsfresh
-  - multirocket_fm
+  - tsfresh
+  # - multirocket_fm
   # - DrCIF
   # - MiniRocket
 
@@ -72,16 +72,10 @@ datasets:
   # - WaveDataTension
   # - WindTurbinePower
   # - ZincConcentration
-
-  # - ElectricMotorTemperature
   # - BeijingPM10Quality_nmv
   # - BeijingPM25Quality_nmv
-
-
-
-
-
-
+  
+  # - ElectricMotorTemperature
   # - DailyTemperatureLatitude
   # - TetuanEnergyConsumption
   # - PPGDalia_eq

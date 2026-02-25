@@ -1,29 +1,7 @@
 import numpy as np
 import pandas as pd
-from aeon.datasets import load_from_ts_file, write_to_ts_file
+from aeon.datasets import load_from_ts_file
 from sklearn.utils import check_random_state
-
-def to_tsfresh_df(X):
-    if X.ndim == 2:
-        X = X[:, None, :]
-    N, C, T = X.shape
-    dfs = []
-    for i in range(N):
-        for c in range(C):
-            dfs.append(
-                pd.DataFrame({
-                    "id": i,
-                    "time": np.arange(T),
-                    "value": X[i, c],
-                    "kind": f"ch{c}"
-                })
-            )
-    return pd.concat(dfs, ignore_index=True)
-
-def adjust_ts_length(X, num_patches):
-    T = X.shape[-1]
-    T_new = (T // num_patches) * num_patches
-    return X[..., :T_new]
 
 def load_experiment_data(problem_path: str,dataset: str,resample_id: int,predefined_resample: bool):
     
