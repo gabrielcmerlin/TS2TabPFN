@@ -1,17 +1,19 @@
-filename: tsfresh_eff.csv
+filename: c22_clas.csv
 
 device: cuda
 
-runs: 30
+runs: 1
 
 models: 
-  # - c22
-  - tsfresh
+  - c22
+  # - tsfresh
   # - multirocket_fm
   # - DrCIF
   # - MiniRocket
 
-data_path: data
+task: classification
+
+data_path: data_clas
 
 seed: 0
 
@@ -83,3 +85,171 @@ datasets:
   # - NewsTitleSentiment
   # - VentilatorPressure
   # - AustraliaRainfall
+
+  # ----------------------------------------------------------------------------
+
+  # - Adiac - class
+  # - ArticularyWordRecognition - class
+  # - Cricket - class
+  # - CricketX - class
+  # - CricketY - class
+  # - CricketZ - class
+  # - EOGHorizontalSignal - class
+  # - EOGVerticalSignal - class
+  # - FacesUCR - class
+  # - FiftyWords - class
+  # - Fungi - class
+  # - GestureMidAirD1 - class
+  # - GestureMidAirD2 - class
+  # - GestureMidAirD3 - class
+  # - Handwriting - class
+  # - FaceAll - class
+  # - InsectWingbeatSound - class
+  # - Libras - class
+  # - LSST - class
+  # - MiddlePhalanxTW - class
+  # - NonInvasiveFetalECGThorax1 - class
+  # - NonInvasiveFetalECGThorax2 - class
+  # - Phoneme - class
+  # - PhonemeSpectra - class
+  # - PigAirwayPressure - class
+  # - PigArtPressure - class
+  # - PigCVP - class
+  # - PLAID - class
+  # - ShapesAll - class
+  # - SwedishLeaf - class
+  # - WordSynonyms - class
+  # - Crop - class
+
+  # shapediff
+  # - AllGestureWiimoteX
+  # - AllGestureWiimoteY
+  # - AllGestureWiimoteZ
+
+  # missing
+  - DodgerLoopDay
+  - DodgerLoopGame
+  - DodgerLoopWeekend
+  - MelbournePedestrian
+  - CharacterTrajectories
+
+  # zerodiv
+  # - Earthquakes
+  # - InsectWingbeat
+  # - MotorImagery
+  # - DistalPhalanxTW
+
+  # - ArrowHead
+  # - AtrialFibrillation
+  # - ACSF1
+  # - BasicMotions
+  # - Beef
+  # - BeetleFly
+  # - BirdChicken
+  # - BME
+  # - Car
+  # - CBF
+  # - Chinatown
+  # - ChlorineConcentration
+  # - CinCECGTorso
+  # - Coffee
+  # - Computers
+  # - DiatomSizeReduction
+  # - DistalPhalanxOutlineAgeGroup
+  # - DistalPhalanxOutlineCorrect
+  # - DuckDuckGeese
+  # - ECG200
+  # - ECG5000
+  # - ECGFiveDays
+  # - EigenWorms
+  # - ElectricDevices
+  # - Epilepsy
+  # - ERing
+  # - EthanolConcentration
+  # - EthanolLevel  
+  # - FaceDetection
+  # - FaceFour
+  # - FingerMovements
+  # - Fish
+  # - FordA
+  # - FordB
+  # - FreezerRegularTrain
+  # - FreezerSmallTrain
+  # - GesturePebbleZ1
+  # - GesturePebbleZ2
+  # - GunPoint
+  # - GunPointAgeSpan
+  # - GunPointMaleVersusFemale
+  # - GunPointOldVersusYoung
+  # - Ham
+  # - HandMovementDirection
+  # - HandOutlines
+  # - Haptics
+  # - Heartbeat
+  # - Herring
+  # - HouseTwenty
+  # - InlineSkate
+  # - InsectEPGRegularTrain
+  # - InsectEPGSmallTrain
+  # - ItalyPowerDemand
+  # - JapaneseVowels
+  # - LargeKitchenAppliances
+  # - Lightning2
+  # - Lightning7
+  # - Mallat
+  # - Meat
+  # - MedicalImages
+  # - MiddlePhalanxOutlineAgeGroup
+  # - MiddlePhalanxOutlineCorrect
+  # - MixedShapesRegularTrain
+  # - MixedShapesSmallTrain
+  # - MoteStrain
+  # - NATOPS
+  # - OliveOil
+  # - OSULeaf
+  # - PEMS-SF
+  # - PenDigits
+  # - PhalangesOutlinesCorrect
+  # - PickupGestureWiimoteZ
+  # - Plane
+  # - PowerCons
+  # - ProximalPhalanxOutlineAgeGroup
+  # - ProximalPhalanxOutlineCorrect
+  # - ProximalPhalanxTW
+  # - RacketSports
+  # - RefrigerationDevices
+  # - Rock
+  # - ScreenType
+  # - SelfRegulationSCP1
+  # - SelfRegulationSCP2
+  # - SemgHandGenderCh2
+  # - SemgHandMovementCh2
+  # - SemgHandSubjectCh2
+  # - ShakeGestureWiimoteZ
+  # - ShapeletSim
+  # - SmallKitchenAppliances
+  # - SmoothSubspace
+  # - SonyAIBORobotSurface1
+  # - SonyAIBORobotSurface2
+  # - SpokenArabicDigits
+  # - StandWalkJump
+  # - StarLightCurves
+  # - Strawberry
+  # - Symbols
+  # - SyntheticControl
+  # - ToeSegmentation1
+  # - ToeSegmentation2
+  # - Trace
+  # - TwoLeadECG
+  # - TwoPatterns
+  # - UMD
+  # - UWaveGestureLibrary
+  # - UWaveGestureLibraryAll
+  # - UWaveGestureLibraryX
+  # - UWaveGestureLibraryY
+  # - UWaveGestureLibraryZ
+  # - Wafer
+  # - Wine
+  # - Worms
+  # - WormsTwoClass
+  # - Yoga

@@ -2,8 +2,8 @@ import pandas as pd
 import re
 
 # ========= CONFIG =========
-input_csv = "outputs/mini.csv"
-output_csv = "results/MiniROCKET.csv"
+input_csv = "outputs/tsfresh_eff.csv"
+output_csv = "results/Tab_tsfresh.csv"
 metric = "rmse"
 # ==========================
 

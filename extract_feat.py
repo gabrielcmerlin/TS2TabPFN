@@ -9,7 +9,23 @@ from tsfresh import extract_features
 from tsfresh.utilities.dataframe_functions import impute
 from tsfresh.feature_extraction import EfficientFCParameters
 from utils_data import get_data
-from utils_train import to_tsfresh_df
+
+def to_tsfresh_df(X):
+    if X.ndim == 2:
+        X = X[:, None, :]
+    N, C, T = X.shape
+    dfs = []
+    for i in range(N):
+        for c in range(C):
+            dfs.append(
+                pd.DataFrame({
+                    "id": i,
+                    "time": np.arange(T),
+                    "value": X[i, c],
+                    "kind": f"ch{c}"
+                })
+            )
+    return pd.concat(dfs, ignore_index=True)
 
 def main():
     parser = Parser()
