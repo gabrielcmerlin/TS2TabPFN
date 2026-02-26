@@ -152,7 +152,7 @@ def get_data_reg(data_path, dataset_name, resample_id, predefined_resample=False
 
     return X_train, y_train, X_test, y_test
 
-def get_data_clas(data_path, dataset_name, resample_id, predefined_resample=False):
+def get_data_clf(data_path, dataset_name, resample_id, predefined_resample=False):
     X_train, y_train, X_test, y_test, resample = load_experiment_data(
         data_path, dataset_name, resample_id, predefined_resample
     )

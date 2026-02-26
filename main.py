@@ -20,10 +20,11 @@ def main():
     FILENAME = config.get("filename", 'teste')
     SEED = config.get("seed", 0)
     DEVICE =  config.get("device", 'cpu')
-    DATA_PATH = config.get("data_path", 'data/')
     TASK = config.get("task", None)
+    DATA_PATH = TASK + '/' + config.get("data_path", 'data/')
 
-    csv_path = os.path.join("./outputs", FILENAME)
+    csv_path = os.path.join(TASK+"/outputs", FILENAME)
+    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
 
     get_data, train_model, get_results, print_results = choose_functions(TASK)
 
@@ -37,7 +38,7 @@ def main():
                 print(f'\n        -> Running model {model_name}  ')
 
                 if model_name == "tsfresh":
-                    X_train, y_train, X_test, y_test = get_data_tsfresh("./feature_cache_reg",dataset_name,SEED+run)
+                    X_train, y_train, X_test, y_test = get_data_tsfresh(TASK+"/feature_cache",dataset_name,SEED+run)
                 else:
                     X_train, y_train, X_test, y_test = get_data(DATA_PATH, dataset_name, SEED+run)
                     X_train, X_test = extract_feat(X_train, X_test, model_name)

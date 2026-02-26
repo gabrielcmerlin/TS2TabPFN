@@ -49,9 +49,9 @@ def train_model_reg(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
         regressor.fit(X_train, y_train)
         y_pred = regressor.predict(X_test)
 
-        return y_pred
+    return y_pred
     
-def train_model_clas(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
+def train_model_clf(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
     classifier = TabPFNClassifier(
         random_state=SEED+run,
         ignore_pretraining_limits=True,
@@ -81,7 +81,7 @@ def get_results_reg(y_test, y_pred, model_name, dataset_name, elapsed_time, run)
 
     return row
 
-def get_results_clas(y_test, y_pred, model_name, dataset_name, elapsed_time, run):
+def get_results_clf(y_test, y_pred, model_name, dataset_name, elapsed_time, run):
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred, average="weighted")
     precision = precision_score(y_test, y_pred, average="weighted")
@@ -116,7 +116,7 @@ def print_results_reg(results):
     print(f"           RMSE: {results['rmse']:.8f}")
     print(f"           R²  : {results['r2']:.8f}")
 
-def print_results_clas(results):
+def print_results_clf(results):
     print("\n           ===== Results =====")
     print(f"           Accuracy : {results['accuracy']:.8f}")
     print(f"           F1-score : {results['f1']:.8f}")

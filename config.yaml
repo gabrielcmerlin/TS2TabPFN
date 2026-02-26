@@ -1,4 +1,4 @@
-filename: c22_clas.csv
+filename: teste.csv
 
 device: cuda
 
@@ -11,9 +11,9 @@ models:
   # - DrCIF
   # - MiniRocket
 
-task: classification
+task: tsc
 
-data_path: data_clas
+data_path: data
 
 seed: 0
 
@@ -77,6 +77,7 @@ datasets:
   # - BeijingPM10Quality_nmv
   # - BeijingPM25Quality_nmv
   
+  # Big
   # - ElectricMotorTemperature
   # - DailyTemperatureLatitude
   # - TetuanEnergyConsumption
@@ -88,58 +89,59 @@ datasets:
 
   # ----------------------------------------------------------------------------
 
-  # - Adiac - class
-  # - ArticularyWordRecognition - class
-  # - Cricket - class
-  # - CricketX - class
-  # - CricketY - class
-  # - CricketZ - class
-  # - EOGHorizontalSignal - class
-  # - EOGVerticalSignal - class
-  # - FacesUCR - class
-  # - FiftyWords - class
-  # - Fungi - class
-  # - GestureMidAirD1 - class
-  # - GestureMidAirD2 - class
-  # - GestureMidAirD3 - class
-  # - Handwriting - class
-  # - FaceAll - class
-  # - InsectWingbeatSound - class
-  # - Libras - class
-  # - LSST - class
-  # - MiddlePhalanxTW - class
-  # - NonInvasiveFetalECGThorax1 - class
-  # - NonInvasiveFetalECGThorax2 - class
-  # - Phoneme - class
-  # - PhonemeSpectra - class
-  # - PigAirwayPressure - class
-  # - PigArtPressure - class
-  # - PigCVP - class
-  # - PLAID - class
-  # - ShapesAll - class
-  # - SwedishLeaf - class
-  # - WordSynonyms - class
-  # - Crop - class
+  # Class
+  # - Adiac
+  # - ArticularyWordRecognition
+  # - Cricket
+  # - CricketX
+  # - CricketY
+  # - CricketZ
+  # - EOGHorizontalSignal
+  # - EOGVerticalSignal
+  # - FacesUCR
+  # - FiftyWords
+  # - Fungi
+  # - GestureMidAirD1
+  # - GestureMidAirD2
+  # - GestureMidAirD3
+  # - Handwriting
+  # - FaceAll
+  # - InsectWingbeatSound
+  # - Libras
+  # - LSST
+  # - MiddlePhalanxTW
+  # - NonInvasiveFetalECGThorax1
+  # - NonInvasiveFetalECGThorax2
+  # - Phoneme
+  # - PhonemeSpectra
+  # - PigAirwayPressure
+  # - PigArtPressure
+  # - PigCVP
+  # - PLAID
+  # - ShapesAll
+  # - SwedishLeaf
+  # - WordSynonyms
+  # - Crop
 
-  # shapediff
+  # ShapeDiff
   # - AllGestureWiimoteX
   # - AllGestureWiimoteY
   # - AllGestureWiimoteZ
 
-  # missing
-  - DodgerLoopDay
-  - DodgerLoopGame
-  - DodgerLoopWeekend
-  - MelbournePedestrian
-  - CharacterTrajectories
+  # Missing
+  # - DodgerLoopDay
+  # - DodgerLoopGame
+  # - DodgerLoopWeekend
+  # - MelbournePedestrian
+  # - CharacterTrajectories
 
-  # zerodiv
+  # Zero division
   # - Earthquakes
   # - InsectWingbeat
   # - MotorImagery
   # - DistalPhalanxTW
 
-  # - ArrowHead
+  - ArrowHead
   # - AtrialFibrillation
   # - ACSF1
   # - BasicMotions
