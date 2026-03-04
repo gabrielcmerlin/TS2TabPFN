@@ -164,7 +164,7 @@ def get_data_clf(data_path, dataset_name, resample_id, predefined_resample=False
     
     return X_train, y_train, X_test, y_test
 
-def get_data_tsfresh(feature_cache_path,dataset_name,resample_id):
+def get_data_extracted_reg(feature_cache_path,dataset_name,resample_id):
 
     X_full = np.load(os.path.join(feature_cache_path, f"{dataset_name}_X.npy"))
     y_full = np.load(os.path.join(feature_cache_path, f"{dataset_name}_y.npy"))
@@ -187,5 +187,24 @@ def get_data_tsfresh(feature_cache_path,dataset_name,resample_id):
 
     y_train = y_train.astype(float)
     y_test = y_test.astype(float)
+
+    return X_train, y_train, X_test, y_test
+
+def get_data_extracted_clf(feature_cache_path,dataset_name,resample_id):
+
+    X_full = np.load(os.path.join(feature_cache_path, f"{dataset_name}_X.npy"))
+    y_full = np.load(os.path.join(feature_cache_path, f"{dataset_name}_y.npy"))
+    n_train = int(np.load(os.path.join(feature_cache_path, f"{dataset_name}_ntrain.npy"))[0])
+
+    X_train = X_full[:n_train]
+    X_test = X_full[n_train:]
+    y_train = y_full[:n_train]
+    y_test = y_full[n_train:]
+
+    resample = True if resample_id != 0 else False
+    if resample:
+        X_train, y_train, X_test, y_test = stratified_resample_data(
+            X_train, y_train, X_test, y_test, random_state=resample_id
+        )
 
     return X_train, y_train, X_test, y_test

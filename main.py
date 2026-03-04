@@ -4,7 +4,6 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 import os
 import time
 from Parser import Parser
-from utils_data import get_data_tsfresh
 from utils_train import store_results, extract_feat
 from utils_task import choose_functions
 
@@ -26,7 +25,7 @@ def main():
     csv_path = os.path.join(TASK+"/outputs", FILENAME)
     os.makedirs(os.path.dirname(csv_path), exist_ok=True)
 
-    get_data, train_model, get_results, print_results = choose_functions(TASK)
+    get_data, train_model, get_results, print_results, get_data_extracted = choose_functions(TASK)
 
     for run in range(NUM_RUNS):
         print(f'\n === Started run {run+1} === ')
@@ -37,8 +36,12 @@ def main():
             for model_name in MODELS:
                 print(f'\n        -> Running model {model_name}  ')
 
-                if model_name == "tsfresh":
-                    X_train, y_train, X_test, y_test = get_data_tsfresh(TASK+"/feature_cache",dataset_name,SEED+run)
+                if model_name in ["tsfresh","multirocket_fm"]:
+                    aux = ''
+                    if model_name == 'multirocket_fm':
+                        aux = '_multi'
+
+                    X_train, y_train, X_test, y_test = get_data_extracted(TASK+"/feature_cache"+aux,dataset_name,SEED+run)
                 else:
                     X_train, y_train, X_test, y_test = get_data(DATA_PATH, dataset_name, SEED+run)
                     X_train, X_test = extract_feat(X_train, X_test, model_name)

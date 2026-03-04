@@ -1,25 +1,62 @@
-filename: teste.csv
+filename: drcif.csv
 
 device: cuda
 
 runs: 1
 
 models: 
-  - c22
+  # - c22
   # - tsfresh
   # - multirocket_fm
-  # - DrCIF
   # - MiniRocket
+  - DrCIF
 
-task: tsc
+task: tser
 
 data_path: data
 
 seed: 0
 
+invalid_datasets:
+  # TSER (Huge data)
+  - ElectricMotorTemperature
+  - DailyTemperatureLatitude
+  - TetuanEnergyConsumption
+  - PPGDalia_eq
+  - NewsHeadlineSentiment
+  - NewsTitleSentiment
+  - VentilatorPressure
+  - AustraliaRainfall
+
+  # TSC (Missing values or unequal length)
+  - AllGestureWiimoteX
+  - AllGestureWiimoteY
+  - AllGestureWiimoteZ
+  - CharacterTrajectories
+  - DodgerLoopDay
+  - DodgerLoopGame
+  - DodgerLoopWeekend
+  - GestureMidAirD1
+  - GestureMidAirD2
+  - GestureMidAirD3
+  - GesturePebbleZ1
+  - GesturePebbleZ2
+  - InsectWingbeat
+  - JapaneseVowels
+  - MelbournePedestrian
+  - PLAID
+  - PickupGestureWiimoteZ
+  - ShakeGestureWiimoteZ
+  - SpokenArabicDigits
+  - PenDigits
+  - FaceDetection
+  - DuckDuckGeese
+  - PEMS-SF
+  - Crop
+
 datasets:
 
-  # - Covid3Month
+  - Covid3Month
   # - FloodModeling1
   # - FloodModeling2
   # - FloodModeling3
@@ -76,109 +113,56 @@ datasets:
   # - ZincConcentration
   # - BeijingPM10Quality_nmv
   # - BeijingPM25Quality_nmv
-  
-  # Big
-  # - ElectricMotorTemperature
-  # - DailyTemperatureLatitude
-  # - TetuanEnergyConsumption
-  # - PPGDalia_eq
-  # - NewsHeadlineSentiment
-  # - NewsTitleSentiment
-  # - VentilatorPressure
-  # - AustraliaRainfall
 
   # ----------------------------------------------------------------------------
 
-  # Class
-  # - Adiac
-  # - ArticularyWordRecognition
-  # - Cricket
-  # - CricketX
-  # - CricketY
-  # - CricketZ
-  # - EOGHorizontalSignal
-  # - EOGVerticalSignal
-  # - FacesUCR
-  # - FiftyWords
-  # - Fungi
-  # - GestureMidAirD1
-  # - GestureMidAirD2
-  # - GestureMidAirD3
-  # - Handwriting
-  # - FaceAll
-  # - InsectWingbeatSound
-  # - Libras
-  # - LSST
-  # - MiddlePhalanxTW
-  # - NonInvasiveFetalECGThorax1
-  # - NonInvasiveFetalECGThorax2
-  # - Phoneme
-  # - PhonemeSpectra
-  # - PigAirwayPressure
-  # - PigArtPressure
-  # - PigCVP
-  # - PLAID
-  # - ShapesAll
-  # - SwedishLeaf
-  # - WordSynonyms
-  # - Crop
-
-  # ShapeDiff
-  # - AllGestureWiimoteX
-  # - AllGestureWiimoteY
-  # - AllGestureWiimoteZ
-
-  # Missing
-  # - DodgerLoopDay
-  # - DodgerLoopGame
-  # - DodgerLoopWeekend
-  # - MelbournePedestrian
-  # - CharacterTrajectories
-
-  # Zero division
-  # - Earthquakes
-  # - InsectWingbeat
-  # - MotorImagery
-  # - DistalPhalanxTW
-
-  - ArrowHead
-  # - AtrialFibrillation
   # - ACSF1
+  # - Adiac
+  # - ArrowHead
+  # - ArticularyWordRecognition
+  # - AtrialFibrillation
+  # - BME
   # - BasicMotions
   # - Beef
   # - BeetleFly
   # - BirdChicken
-  # - BME
-  # - Car
   # - CBF
+  # - Car
   # - Chinatown
   # - ChlorineConcentration
   # - CinCECGTorso
   # - Coffee
   # - Computers
+  # - Cricket
+  # - CricketX
+
+  # - CricketY
+  # - CricketZ
   # - DiatomSizeReduction
   # - DistalPhalanxOutlineAgeGroup
   # - DistalPhalanxOutlineCorrect
-  # - DuckDuckGeese
+  # - DistalPhalanxTW
   # - ECG200
   # - ECG5000
   # - ECGFiveDays
-  # - EigenWorms
+  # - EOGHorizontalSignal
+  # - EOGVerticalSignal
+  # - ERing
+  # - Earthquakes
   # - ElectricDevices
   # - Epilepsy
-  # - ERing
   # - EthanolConcentration
-  # - EthanolLevel  
-  # - FaceDetection
-  # - FaceFour
+  # - EthanolLevel
+
+  # - FaceAll
+  # - FiftyWords
   # - FingerMovements
   # - Fish
   # - FordA
   # - FordB
   # - FreezerRegularTrain
   # - FreezerSmallTrain
-  # - GesturePebbleZ1
-  # - GesturePebbleZ2
+  # - Fungi
   # - GunPoint
   # - GunPointAgeSpan
   # - GunPointMaleVersusFemale
@@ -186,34 +170,47 @@ datasets:
   # - Ham
   # - HandMovementDirection
   # - HandOutlines
+  # - Handwriting
   # - Haptics
+    # - Plane
+
   # - Heartbeat
   # - Herring
   # - HouseTwenty
   # - InlineSkate
   # - InsectEPGRegularTrain
   # - InsectEPGSmallTrain
+  # - InsectWingbeatSound
   # - ItalyPowerDemand
-  # - JapaneseVowels
+  # - LSST
   # - LargeKitchenAppliances
+  # - Libras
   # - Lightning2
   # - Lightning7
   # - Mallat
   # - Meat
   # - MedicalImages
   # - MiddlePhalanxOutlineAgeGroup
+  # - FaceFour
+  # - FacesUCR
+  # - EigenWorms
+
+
   # - MiddlePhalanxOutlineCorrect
+  # - MiddlePhalanxTW
   # - MixedShapesRegularTrain
   # - MixedShapesSmallTrain
   # - MoteStrain
+  # - MotorImagery
   # - NATOPS
-  # - OliveOil
+  # - NonInvasiveFetalECGThorax1
+  # - NonInvasiveFetalECGThorax2
   # - OSULeaf
-  # - PEMS-SF
-  # - PenDigits
+  # - OliveOil
   # - PhalangesOutlinesCorrect
-  # - PickupGestureWiimoteZ
-  # - Plane
+  # - Phoneme
+  # - PhonemeSpectra
+  # - PigAirwayPressure
   # - PowerCons
   # - ProximalPhalanxOutlineAgeGroup
   # - ProximalPhalanxOutlineCorrect
@@ -224,19 +221,22 @@ datasets:
   # - ScreenType
   # - SelfRegulationSCP1
   # - SelfRegulationSCP2
+  # - PigArtPressure
+  # - PigCVP
+
   # - SemgHandGenderCh2
   # - SemgHandMovementCh2
   # - SemgHandSubjectCh2
-  # - ShakeGestureWiimoteZ
   # - ShapeletSim
+  # - ShapesAll
   # - SmallKitchenAppliances
   # - SmoothSubspace
   # - SonyAIBORobotSurface1
   # - SonyAIBORobotSurface2
-  # - SpokenArabicDigits
   # - StandWalkJump
   # - StarLightCurves
   # - Strawberry
+  # - SwedishLeaf
   # - Symbols
   # - SyntheticControl
   # - ToeSegmentation1
@@ -252,6 +252,7 @@ datasets:
   # - UWaveGestureLibraryZ
   # - Wafer
   # - Wine
+  # - WordSynonyms
   # - Worms
   # - WormsTwoClass
   # - Yoga

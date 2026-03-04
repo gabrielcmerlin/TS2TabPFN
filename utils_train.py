@@ -3,7 +3,9 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 from aeon.transformations.collection.feature_based import Catch22
+from aeon.regression.interval_based import DrCIFRegressor
 from tsfresh import extract_features
+from tabpfn_extensions.many_class import ManyClassClassifier
 from tabpfn import TabPFNRegressor, TabPFNClassifier
 from aeon.regression.convolution_based import MiniRocketRegressor
 from tsfresh.utilities.dataframe_functions import impute
@@ -40,6 +42,7 @@ def train_model_reg(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
         )
         regressor.fit(X_train, y_train)
         y_pred = regressor.predict(X_test)
+
     else:    
         regressor = TabPFNRegressor(
             random_state=SEED+run,
@@ -52,11 +55,12 @@ def train_model_reg(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
     return y_pred
     
 def train_model_clf(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
-    classifier = TabPFNClassifier(
+    estimator = TabPFNClassifier(
         random_state=SEED+run,
         ignore_pretraining_limits=True,
         device=DEVICE
     )
+    classifier = ManyClassClassifier(estimator=estimator,alphabet_size=10)
     classifier.fit(X_train, y_train)
     y_pred = classifier.predict(X_test)
 

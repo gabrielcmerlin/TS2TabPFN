@@ -2,9 +2,9 @@ import pandas as pd
 import re
 
 # ========= CONFIG =========
-input_csv = "tser/outputs/tsfresh_eff.csv"
-output_csv = "tser/results/Tab_tsfresh.csv"
-metric = "rmse"
+input_csv = "tsc/outputs/tsfresh.csv"
+output_csv = "tsc/results/Tab_tsfresh.csv"
+metric = "accuracy"
 # ==========================
 
 # ==========================
