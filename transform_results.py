@@ -2,8 +2,8 @@ import pandas as pd
 import re
 
 # ========= CONFIG =========
-input_csv = "tsc/outputs/tsfresh.csv"
-output_csv = "tsc/results/Tab_tsfresh.csv"
+input_csv = "tsc/outputs/multi.csv"
+output_csv = "tsc/results/Tab_multi.csv"
 metric = "accuracy"
 # ==========================
 
