@@ -55,8 +55,8 @@ cd TS-TabPFN
 ### Installing requisites:
 ```bash
 conda env create -f env.yaml
-pip install git+https://github.com/jose-gilberto/labicompare/
 conda activate ecml
+pip install git+https://github.com/jose-gilberto/labicompare/
 ```
 
 ### Downloading data
@@ -80,6 +80,18 @@ unzip tsc_data.zip
 rm tsc_data.zip
 cd ../..
 ```
+
+### Setting up the TabPFN Model
+To download the TabPFN 2.5 weights, you must authenticate with Hugging Face using an access token:
+
+1. Log in to your [Hugging Face account](https://huggingface.co/).
+2. Navigate to **Settings > Access Tokens** and create a new token with **Read** permissions.
+3. Run the following command in your terminal and paste your token when prompted:
+```bash
+huggingface-cli login
+```
+
+### Important Notes
 
 **Note 1**: If you plan to run experiments over multiple runs on the same datasets, it is highly recommended to extract features beforehand rather than recalculating them during every training cycle. This significantly reduces total computation time. You should run the extraction scripts first to generate local feature files, which the model can then load directly:
 ```bash
