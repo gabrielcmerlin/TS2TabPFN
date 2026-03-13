@@ -36,7 +36,7 @@ def main():
     DATASETS = config.get("datasets", [])
     TASK = config.get("task", None)
     DATA_PATH = TASK + '/' + config.get("data_path", 'data/')
-    FEATURE_DIR = TASK + "/feature_cache"
+    FEATURE_DIR = TASK + "/feature_cache_tsfresh"
     os.makedirs(FEATURE_DIR, exist_ok=True)
     TIME_LOG_FILE = './tsc/outputs/time_tsfresh.csv'
 

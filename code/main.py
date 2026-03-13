@@ -36,10 +36,13 @@ def main():
             for model_name in MODELS:
                 print(f'\n        -> Running model {model_name}  ')
 
+                # Pre-extracted features.
                 if model_name in ["tsfresh","multirocket_fm"]:
                     aux = ''
                     if model_name == 'multirocket_fm':
                         aux = '_multi'
+                    else:
+                        aux = '_tsfresh'
 
                     X_train, y_train, X_test, y_test = get_data_extracted(TASK+"/feature_cache"+aux,dataset_name,SEED+run)
                 else:
