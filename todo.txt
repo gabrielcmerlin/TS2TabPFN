@@ -1,0 +1,4 @@
+- env
+- arquivo de setup
+- README
+- GitHub bonitin

@@ -4,11 +4,11 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 import os
 import numpy as np
 import pandas as pd
-from Parser import Parser
 from tsfresh import extract_features
 from tsfresh.utilities.dataframe_functions import impute
 from tsfresh.feature_extraction import EfficientFCParameters
-from utils_task import choose_functions
+from utils.Parser import Parser
+from utils.utils_task import choose_functions
 import time
 import csv
 

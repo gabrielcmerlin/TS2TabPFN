@@ -3,9 +3,9 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 import os
 import time
-from Parser import Parser
-from utils_train import store_results, extract_feat
-from utils_task import choose_functions
+from utils.Parser import Parser
+from utils.utils_train import store_results, extract_feat
+from utils.utils_task import choose_functions
 
 def main():
     # Load config.yaml.

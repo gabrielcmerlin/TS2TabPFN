@@ -1,16 +1,16 @@
-filename: time_hc2.csv
+filename: teste.csv
 
 device: cuda
 
 runs: 1
 
 models: 
-  # - c22
+  - c22
   # - tsfresh
   # - multirocket_fm
   # - MiniRocket
   # - DrCIF
-  - HC2
+  # - HC2
 
 task: tsc
 
@@ -117,7 +117,7 @@ datasets:
 
   # ----------------------------------------------------------------------------
 
-  # - ArrowHead
+  - ArrowHead
   # - ACSF1
   # - Adiac
   # - ArticularyWordRecognition
@@ -131,11 +131,11 @@ datasets:
   # - Car
   # - Chinatown
   # - ChlorineConcentration
-  - CinCECGTorso
+  # - CinCECGTorso
   # - Coffee
   # - Computers
   # - Cricket
-  - CricketX
+  # - CricketX
 
   # - CricketY
   # - CricketZ
