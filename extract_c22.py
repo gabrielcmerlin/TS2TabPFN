@@ -5,11 +5,10 @@ import os
 import numpy as np
 from Parser import Parser
 from utils_task import choose_functions
-from aeon.transformations.collection.convolution_based import MultiRocket
+from aeon.transformations.collection.feature_based import Catch22
 import time
 import csv
-import numba
-numba.set_num_threads(16)
+
 
 def main():
     parser = Parser()
@@ -18,13 +17,14 @@ def main():
     DATASETS = config.get("datasets", [])
     TASK = config.get("task", None)
     DATA_PATH = TASK + '/' + config.get("data_path", 'data/')
-    FEATURE_DIR = TASK + "/feature_cache_multi"
+    FEATURE_DIR = TASK + "/feature_cache_catch22"
     os.makedirs(FEATURE_DIR, exist_ok=True)
-    TIME_LOG_FILE = './tsc/outputs/time_multi.csv'
+
+    TIME_LOG_FILE = './tsc/outputs/time_catch22.csv'
 
     for dataset_name in DATASETS:
 
-        print(f"\n=== Extracting MultiROCKET features for {dataset_name} ===")
+        print(f"\n=== Extracting Catch22 features for {dataset_name} ===")
 
         # IMPORTANT: resample_id=0 disables shuffling
         get_data, _, _, _, _ = choose_functions(TASK)
@@ -41,19 +41,19 @@ def main():
             X_full = np.concatenate([X_train, X_test], axis=0)
             y_full = np.concatenate([y_train, y_test], axis=0)
 
-            print("Initializing MultiROCKET...")
-            transformer = MultiRocket()
+            print("Initializing Catch22...")
+            transformer = Catch22(n_jobs=16)
 
-            print("Fitting MultiROCKET on training data...")
+            print("Fitting Catch22...")
             start_time = time.time()
             transformer.fit(X_train)
 
-            print("Transforming full dataset...")
+            print("Transforming dataset...")
             X_full_feat = transformer.transform(X_full)
             end_time = time.time()
+
             duration = end_time - start_time
 
-            # Convert to numpy if needed
             if not isinstance(X_full_feat, np.ndarray):
                 X_full_feat = X_full_feat.to_numpy()
 
@@ -66,14 +66,14 @@ def main():
             file_exists = os.path.isfile(TIME_LOG_FILE)
             with open(TIME_LOG_FILE, mode='a', newline='') as f:
                 writer = csv.writer(f)
-                # Se o arquivo for novo, escreve o cabeçalho
+
                 if not file_exists:
                     writer.writerow(["dataset", "n_samples", "n_features", "time_seconds"])
-                
+
                 writer.writerow([
-                    dataset_name, 
-                    len(X_full), 
-                    X_full_feat.shape[1], 
+                    dataset_name,
+                    len(X_full),
+                    X_full_feat.shape[1],
                     round(duration, 4)
                 ])
 

@@ -11,6 +11,7 @@ from aeon.regression.convolution_based import MiniRocketRegressor
 from tsfresh.utilities.dataframe_functions import impute
 from tsfresh.feature_extraction import EfficientFCParameters
 from aeon.transformations.collection.convolution_based import MultiRocket
+from aeon.classification.hybrid import HIVECOTEV2
 from sklearn.metrics import (
     mean_squared_error,mean_absolute_error,r2_score,
     accuracy_score, f1_score, precision_score, recall_score
@@ -35,10 +36,24 @@ def extract_feat(X_train, X_test, model):
 
     return X_train, X_test
 
-def train_model_reg(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
+def train_test_model_reg(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
     if model_name == 'MiniRocket':
         regressor = MiniRocketRegressor(
             random_state=SEED+run,
+        )
+        regressor.fit(X_train, y_train)
+        y_pred = regressor.predict(X_test)
+
+    elif model_name == 'DrCIF':
+        d = X_train.shape[1] 
+        m = X_train.shape[2]
+        n_intervals = int(4 + (np.sqrt(d) * np.sqrt(m)) / 3)
+        
+        regressor = DrCIFRegressor(
+            n_estimators=500,
+            n_intervals=n_intervals,
+            random_state=SEED + run,
+            n_jobs=-1
         )
         regressor.fit(X_train, y_train)
         y_pred = regressor.predict(X_test)
@@ -54,15 +69,25 @@ def train_model_reg(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
 
     return y_pred
     
-def train_model_clf(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
-    estimator = TabPFNClassifier(
-        random_state=SEED+run,
-        ignore_pretraining_limits=True,
-        device=DEVICE
-    )
-    classifier = ManyClassClassifier(estimator=estimator,alphabet_size=10)
-    classifier.fit(X_train, y_train)
-    y_pred = classifier.predict(X_test)
+def train_test_model_clf(X_train, X_test, y_train, SEED, run, DEVICE, model_name):
+
+    if model_name == 'HC2':
+            classifier = HIVECOTEV2(
+                random_state=SEED + run,
+                n_jobs=-1
+            )
+            classifier.fit(X_train, y_train)
+            y_pred = classifier.predict(X_test)
+    
+    else:
+        estimator = TabPFNClassifier(
+            random_state=SEED+run,
+            ignore_pretraining_limits=True,
+            device=DEVICE
+        )
+        classifier = ManyClassClassifier(estimator=estimator,alphabet_size=10)
+        classifier.fit(X_train, y_train)
+        y_pred = classifier.predict(X_test)
 
     return y_pred
     

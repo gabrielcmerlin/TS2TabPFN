@@ -25,7 +25,7 @@ def main():
     csv_path = os.path.join(TASK+"/outputs", FILENAME)
     os.makedirs(os.path.dirname(csv_path), exist_ok=True)
 
-    get_data, train_model, get_results, print_results, get_data_extracted = choose_functions(TASK)
+    get_data, train_test_model, get_results, print_results, get_data_extracted = choose_functions(TASK)
 
     for run in range(NUM_RUNS):
         print(f'\n === Started run {run+1} === ')
@@ -48,7 +48,7 @@ def main():
 
                 try:
                     start_time = time.time()
-                    y_pred = train_model(X_train, X_test, y_train, SEED, run, DEVICE, model_name)
+                    y_pred = train_test_model(X_train, X_test, y_train, SEED, run, DEVICE, model_name)
                     elapsed_time = time.time() - start_time
 
                     results = get_results(y_test, y_pred, model_name, dataset_name, elapsed_time, run)

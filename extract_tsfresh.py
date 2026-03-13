@@ -9,6 +9,8 @@ from tsfresh import extract_features
 from tsfresh.utilities.dataframe_functions import impute
 from tsfresh.feature_extraction import EfficientFCParameters
 from utils_task import choose_functions
+import time
+import csv
 
 def to_tsfresh_df(X):
     if X.ndim == 2:
@@ -36,6 +38,7 @@ def main():
     DATA_PATH = TASK + '/' + config.get("data_path", 'data/')
     FEATURE_DIR = TASK + "/feature_cache"
     os.makedirs(FEATURE_DIR, exist_ok=True)
+    TIME_LOG_FILE = './tsc/outputs/time_tsfresh.csv'
 
     for dataset_name in DATASETS:
 
@@ -60,6 +63,7 @@ def main():
             df_full = to_tsfresh_df(X_full)
 
             print("Extracting tsfresh features...")
+            start_time = time.time()
             X_full_feat = extract_features(
                 df_full,
                 column_id="id",
@@ -68,17 +72,32 @@ def main():
                 column_value="value",
                 default_fc_parameters=EfficientFCParameters(),
                 # n_jobs=max(1, os.cpu_count() // 2)
-                n_jobs=1
+                n_jobs=16
             )
+            end_time = time.time()
+            duration = end_time - start_time
 
             impute(X_full_feat)
             X_full_feat = X_full_feat.to_numpy()
 
             print("Saving features...")
-
             np.save(os.path.join(FEATURE_DIR, f"{dataset_name}_X.npy"), X_full_feat)
             np.save(os.path.join(FEATURE_DIR, f"{dataset_name}_y.npy"), y_full)
             np.save(os.path.join(FEATURE_DIR, f"{dataset_name}_ntrain.npy"), np.array([n_train]))
+
+            file_exists = os.path.isfile(TIME_LOG_FILE)
+            with open(TIME_LOG_FILE, mode='a', newline='') as f:
+                writer = csv.writer(f)
+                # Se o arquivo for novo, escreve o cabeçalho
+                if not file_exists:
+                    writer.writerow(["dataset", "n_samples", "n_features", "time_seconds"])
+                
+                writer.writerow([
+                    dataset_name, 
+                    len(X_full), 
+                    X_full_feat.shape[1], 
+                    round(duration, 4)
+                ])
 
             print(f"Done for {dataset_name}")
         

@@ -1,4 +1,4 @@
-filename: drcif.csv
+filename: time_hc2.csv
 
 device: cuda
 
@@ -9,9 +9,10 @@ models:
   # - tsfresh
   # - multirocket_fm
   # - MiniRocket
-  - DrCIF
+  # - DrCIF
+  - HC2
 
-task: tser
+task: tsc
 
 data_path: data
 
@@ -56,13 +57,13 @@ invalid_datasets:
 
 datasets:
 
-  - Covid3Month
+  # - Covid3Month
   # - FloodModeling1
   # - FloodModeling2
   # - FloodModeling3
-  # - IEEEPPG
-  # - HouseholdPowerConsumption2_nmv
   # - HouseholdPowerConsumption1_nmv
+  # - HouseholdPowerConsumption2_nmv
+  # - IEEEPPG
   # - AppliancesEnergy
   # - BenzeneConcentration_nmv
   # - LiveFuelMoistureContent
@@ -116,9 +117,9 @@ datasets:
 
   # ----------------------------------------------------------------------------
 
+  # - ArrowHead
   # - ACSF1
   # - Adiac
-  # - ArrowHead
   # - ArticularyWordRecognition
   # - AtrialFibrillation
   # - BME
@@ -130,11 +131,11 @@ datasets:
   # - Car
   # - Chinatown
   # - ChlorineConcentration
-  # - CinCECGTorso
+  - CinCECGTorso
   # - Coffee
   # - Computers
   # - Cricket
-  # - CricketX
+  - CricketX
 
   # - CricketY
   # - CricketZ
@@ -172,7 +173,7 @@ datasets:
   # - HandOutlines
   # - Handwriting
   # - Haptics
-    # - Plane
+  # - Plane
 
   # - Heartbeat
   # - Herring
