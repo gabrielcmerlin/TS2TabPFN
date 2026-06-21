@@ -19,6 +19,23 @@ from sklearn.metrics import (
     accuracy_score, f1_score, precision_score, recall_score
 )
 
+def to_tsfresh_df(X):
+    if X.ndim == 2:
+        X = X[:, None, :]
+    N, C, T = X.shape
+    dfs = []
+    for i in range(N):
+        for c in range(C):
+            dfs.append(
+                pd.DataFrame({
+                    "id": i,
+                    "time": np.arange(T),
+                    "value": X[i, c],
+                    "kind": f"ch{c}"
+                })
+            )
+    return pd.concat(dfs, ignore_index=True)
+
 def extract_feat(X_train, X_test, model):
     was_extracted = False
 
@@ -37,6 +54,29 @@ def extract_feat(X_train, X_test, model):
 
         X_train = np.asarray(X_train_feat)
         X_test = np.asarray(X_test_feat)
+        was_extracted = True
+
+    elif model == 'tsfresh':
+        n_train = len(X_train)
+        X_full = np.concatenate([X_train, X_test], axis=0)
+        
+        df_full = to_tsfresh_df(X_full)
+        
+        X_full_feat = extract_features(
+            df_full,
+            column_id="id",
+            column_sort="time",
+            column_kind="kind",
+            column_value="value",
+            default_fc_parameters=EfficientFCParameters(),
+            n_jobs=16
+        )
+        
+        impute(X_full_feat)
+        X_full_feat = X_full_feat.to_numpy()
+        
+        X_train = X_full_feat[:n_train]
+        X_test = X_full_feat[n_train:]
         was_extracted = True
 
     return X_train, X_test, was_extracted
